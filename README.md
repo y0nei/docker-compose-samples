@@ -4,3 +4,4 @@ Personal repository of usefull docker compose samples
 
 ## table of contents:
 - [SearXNG + Traefik reverse proxy](searxng-traefik/)
+- [Prometheus + Grafana](prometheus-grafana/)
