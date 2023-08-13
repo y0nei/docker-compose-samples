@@ -12,9 +12,9 @@ running containers.
 - **Node exporter**: Hardware and OS metrics
 
 ## Table of contents
-- [.env]: Used for storing grafana admin credentials
-- [prometheus.yml]: Prometheus config with pre-configured scraping jobs
-- [grafana/datasource.yml]: Pre-configured prometheus data source for grafana
+- [.env](.env): Used for storing grafana admin credentials
+- [prometheus.yml](prometheus.yml): Prometheus config with pre-configured scraping jobs
+- [grafana/datasource.yml](grafana/datasource.yml): Pre-configured prometheus data source for grafana
 *(no need to set that manually in the dashboard)*
 
 ## Deploying
