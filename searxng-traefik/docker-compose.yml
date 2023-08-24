@@ -22,7 +22,23 @@ services:
       - searxng
       - proxy
     labels:
-      - traefik.enable=true
+      traefik.enable: true
+      traefik.http.routers.searxng.service: searxng
+      traefik.http.routers.searxng.entrypoints: web,websecure
+      traefik.http.routers.searxng.rule: (Host(`domain.tld`) && Method(`GET`, `POST`, `HEAD`))
+      traefik.http.routers.searxng.middlewares: searxng-headers, general-security
+      traefik.http.middlewares.searxng-headers.headers.customResponseHeaders.Permissions-Policy: accelerometer=(),ambient-light-sensor=(),autoplay=(),camera=(),encrypted-media=(),focus-without-user-activation=(),geolocation=(),gyroscope=(),magnetometer=(),microphone=(),midi=(),payment=(),picture-in-picture=(),speaker=(),sync-xhr=(),usb=(),vr=()
+      traefik.http.middlewares.searxng-headers.headers.customResponseHeaders.X-Robots-Tag: "noindex, noarchive, nofollow"
+      traefik.http.middlewares.searxng-headers.headers.customResponseHeaders.Content-Security-Policy: "upgrade-insecure-requests; default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; form-action 'self' https://github.com/searxng/searxng/issues/new; font-src 'self'; frame-ancestors 'self'; base-uri 'self'; connect-src 'self' https://overpass-api.de; img-src 'self' data: https://*.tile.openstreetmap.org; frame-src https://www.youtube-nocookie.com https://player.vimeo.com https://www.dailymotion.com https://www.deezer.com https://www.mixcloud.com https://w.soundcloud.com https://embed.spotify.com"
+      traefik.http.middlewares.general-security.headers.stsSeconds: 31536000
+      traefik.http.middlewares.general-security.headers.stsIncludeSubdomains: true
+      traefik.http.middlewares.general-security.headers.stsPreload: true
+      traefik.http.middlewares.general-security.headers.browserXssFilter: true
+      traefik.http.middlewares.general-security.headers.contentTypeNosniff: true
+      traefik.http.middlewares.general-security.headers.referrerPolicy: "no-referrer"
+      traefik.http.routers.searxng.tls: true
+      traefik.http.routers.searxng.tls.certresolver: production
+      traefik.http.services.searxng.loadbalancer.server.port: 8080
 
   redis:
     image: "redis:alpine"
@@ -54,3 +70,5 @@ networks:
   # Your proxy network
   proxy:
     external: true
+
+# vim: wrap

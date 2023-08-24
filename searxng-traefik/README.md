@@ -3,7 +3,7 @@
 
 A docker-compose template for the [SearXNG] metasearch engine, using Traefik as a reverse proxy instead of the [default Caddy configuration][2]
 
-Instead of keeping all the Traefik-related settings inside docker compose labels, i keep them in a separate file.
+There are two configuration examples, either entirely by docker labels or a separate file in `traefik/conf/searxng.yml`.
 
 ## Resources
 - Other reverse proxy configuration examples: [searxng/searxng-docker issues][3].
