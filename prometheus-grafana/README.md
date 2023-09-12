@@ -37,8 +37,13 @@ please refer to the [Cadvisor] readme, it has valuable information.
 Grafana also previously had some issues with permissions and persistent storage
 but all now is fixed which is phenomenal!
 
+Also, remember to enable the memory cgroup if running Debian for cAdvisor to
+properly scrape memory usage data. See [here][3] for instructions, on raspberry
+pi systems it's usually located at `/boot/cmdline.txt`.
+
 [1]: https://grafana.com/grafana/dashboards/14282-cadvisor-exporter/
 [2]: https://grafana.com/grafana/dashboards/1860-node-exporter-full/
+[3]: https://github.com/google/cadvisor/blob/master/docs/running.md#debian
 
 [Prometheus]: https://prometheus.io/
 [Grafana]: https://grafana.com/
