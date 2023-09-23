@@ -1,5 +1,5 @@
 http:
-  searvices:
+  services:
     searxng:
       loadBalancer:
         servers:
